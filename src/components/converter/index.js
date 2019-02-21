@@ -18,35 +18,46 @@ class Converter extends Component {
     return (
       <div>
         <div width="40%">
-          <span>From</span>
-          <div className="custom-select" style={{ width: "200px" }}>
-            <select
-              value={this.state.fromCurrency}
-              onChange={e => this.setState({ fromCurrency: e.target.value })}
-            >
-              <option value="0">Select currency:</option>
-              <option value="1">USD</option>
-              <option value="2">EUR</option>
-              <option value="3">BGN</option>
-              <option value="4">GBP</option>
-            </select>
-          </div>
 
-          <p>To</p>
-          <div className="custom-select" style={{ width: "200px" }}>
-            <select
-              style={{ display: "inline-block" }}
-              value={this.state.toCurrency}
-              onChange={e => this.setState({ toCurrency: e.target.value })}
-            >
-              <option value="0">Select currency:</option>
-              <option value="EUR">EUR</option>
-              <option value="BGN">BGN</option>
-              <option value="GBP">GBP</option>
-              <option value="AUD">AUD</option>
-              <option value="RUB">RUB</option>
-            </select>
-          </div>
+        <table border="5">
+        <tbody>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+                <tr>
+                        <td><div className="custom-select" style={{ width: "200px" }}>
+                            <select
+                                value={this.state.fromCurrency}
+                                onChange={e => this.setState({ fromCurrency: e.target.value })}
+                            >
+                                <option value="0">Select currency:</option>
+                                <option value="1">USD</option>
+                                <option value="2">EUR</option>
+                                <option value="3">BGN</option>
+                                <option value="4">GBP</option>
+                            </select>
+                        </div></td>
+                        <td>
+                            <div className="custom-select" style={{ width: "200px" }}>
+                                <select
+                                    style={{ display: "inline-block" }}
+                                    value={this.state.toCurrency}
+                                    onChange={e => this.setState({ toCurrency: e.target.value })}
+                                >
+                                    <option value="0">Select currency:</option>
+                                    <option value="EUR">EUR</option>
+                                    <option value="BGN">BGN</option>
+                                    <option value="GBP">GBP</option>
+                                    <option value="AUD">AUD</option>
+                                    <option value="RUB">RUB</option>
+                                </select>
+                            </div></td>
+                </tr>
+                </tbody>
+                </table>
+        
+          
           <p>Amount</p>
           <input
             type="text"
