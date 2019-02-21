@@ -16,7 +16,7 @@ class Historic extends Component {
 
   render() {
     return (
-      <div>
+        <div style={{ textAlign: 'center' }}>
         <p>Pick a date do get historic information about US dollar</p>
         <hr />
         <input
@@ -32,13 +32,36 @@ class Historic extends Component {
           Submit
         </button>
 
-        {(this.props.mostImportantRates || []).map(quote => {
-          return (
-            <div>
-              <p>{quote.firstCurrency} / {quote.secondCurrency} ---> {quote.rate} </p>
+        {this.props.responseDate ? 
+                <div width="40%" style={{textAlign: 'center'}}>
+            <br />
+                    <table border="5" style={{ textAlign: 'center' }}>
+                        <tbody style={{ textAlign: 'center' }}>
+                            <tr>
+                                <th style={{width: '150px'}}>From</th>
+                                <th style={{ width: '150px' }}>To</th>
+                                <th style={{ width: '150px' }}>Rate</th>
+                            </tr>
+                            {this.props.mostImportantRates.map(quote => {
+                                return (
+                                    <tr>
+                                        <td>
+                                            {quote.firstCurrency}
+                                        </td>
+                                        <td>
+                                            {quote.secondCurrency}
+                                        </td>
+                                        <td>
+                                            {quote.rate}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
             </div>
-          );
-        })}
+            
+            : null}
       </div>
     );
   }
@@ -53,7 +76,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSubmitClicked: (date) =>
+  onSubmitClicked: date =>
     dispatch({
       type: "DO_FETCH_HISTORIC",
       payload: date

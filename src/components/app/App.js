@@ -14,6 +14,11 @@ class App extends Component {
           <p style={{ fontSize: '15px' }}>made by dyanakiev</p>
           <img src={logo} className="App-logo" alt="logo" height='220'/>
           <p style={{fontSize: '15px'}}>The App connects to currencylayer.com to get current exchange rates.</p>
+
+          <div style={{ display: 'inline'}}>
+            <NavLink to='/' style={{ marginRight: '50px', color: '#B22222'}}>Converter</NavLink>
+            <NavLink to='/historic' style={{ marginRight: '50px', color: '#B22222' }}>Historic</NavLink>
+          </div>
        
            <br />
           <Route exact path="/" component={Converter} />
