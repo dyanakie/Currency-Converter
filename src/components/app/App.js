@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import Converter from '../converter/index'
+import { Route, NavLink, Switch } from "react-router-dom";
+import Historic from '../historic-data/index'
 import './App.css';
 
 class App extends Component {
@@ -9,9 +11,13 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Currency Converter</h1>
+          <p style={{ fontSize: '15px' }}>made by dyanakiev</p>
           <img src={logo} className="App-logo" alt="logo" height='220'/>
+          <p style={{fontSize: '15px'}}>The App connects to currencylayer.com to get current exchange rates.</p>
+       
            <br />
-           <Converter />
+          <Route exact path="/" component={Converter} />
+          <Route exact path="/historic" component={Historic} />
         </header>
       </div>
     );

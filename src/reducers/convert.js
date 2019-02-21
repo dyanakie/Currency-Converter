@@ -7,7 +7,7 @@ export const convertReducer = (state = {}, action) => {
 
         case 'DO_CONVERT_ASYNC':{
             console.log(action);
-           return {result: action.payload};
+           return {result: action.payload.quote, toCurrencyConverted: action.payload.toCurrency};
         }
 
         default: return state;
