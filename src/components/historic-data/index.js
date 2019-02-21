@@ -17,7 +17,7 @@ class Historic extends Component {
   render() {
     return (
         <div style={{ textAlign: 'center' }}>
-        <p>Pick a date do get historic information about US dollar</p>
+        <p>Pick a date do get historic rates of US dollar</p>
         <hr />
         <input
           value={this.state.pickedDate}
