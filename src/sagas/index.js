@@ -32,7 +32,7 @@ function* fetchCalculation(action) {
   const quote = json.quotes[currencies];
   yield put({
     type: DO_CONVERT_ASYNC,
-    payload: { quote: quote * amount, toCurrency: toCurrencyFromResponse, amount: amount }
+    payload: { quote: quote * amount, toCurrency: toCurrencyFromResponse, amount }
   });
   }catch(error){
       console.log(error);
