@@ -26,10 +26,10 @@ function* fetchCalculation(action) {
       toCurrency +
       "&source=USD&format=1"
   );
-  const json = yield response.json();
-  const currencies = Object.keys(json.quotes)[0];
+  const responseObj = yield response.json();
+  const currencies = Object.keys(responseObj.quotes)[0];
   const toCurrencyFromResponse = currencies.substring(3);
-  const quote = json.quotes[currencies];
+  const quote = responseObj.quotes[currencies];
   yield put({
     type: DO_CONVERT_ASYNC,
     payload: { quote: quote * amount, toCurrency: toCurrencyFromResponse, amount }
