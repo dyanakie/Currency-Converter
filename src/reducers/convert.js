@@ -6,7 +6,7 @@ export const convertReducer = (state = {}, action) => {
     switch (action.type) {
 
         case DO_CONVERT_ASYNC:{
-           return {result: action.payload.quote, toCurrencyConverted: action.payload.toCurrency, error: null};
+           return {result: action.payload.quote, toCurrencyConverted: action.payload.toCurrency, error: null, amount: action.payload.amount };
         }
 
         case DO_CONVERT_ASYNC_ERROR: {

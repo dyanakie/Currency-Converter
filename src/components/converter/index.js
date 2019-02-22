@@ -96,7 +96,7 @@ class Converter extends Component {
         {this.props.result ? (
           <div>
             <p>
-              {this.state.amount}$ to {this.props.toCurrencyConverted}:{" "}
+              {this.props.amount}$ to {this.props.toCurrencyConverted}:{" "}
               <b>{this.props.result.toFixed(2)}</b>
             </p>
             <p style={{ fontSize: "15px" }}>
@@ -115,7 +115,8 @@ const mapStateToProps = state => {
   return {
     result: state.convertion.result,
     toCurrencyConverted: state.convertion.toCurrencyConverted,
-    error: state.convertion.error
+    error: state.convertion.error,
+    amount: state.convertion.amount
   };
 };
 
