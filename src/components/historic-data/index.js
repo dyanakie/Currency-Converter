@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Route, NavLink, Switch } from "react-router-dom";
+
 
 class Historic extends Component {
   constructor(props) {
@@ -59,6 +61,7 @@ class Historic extends Component {
                             })}
                         </tbody>
                     </table>
+                    <NavLink to='/historic/all' ><button >show all</button></NavLink>
             </div>
             
             : null}
