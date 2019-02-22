@@ -90,6 +90,7 @@ class Converter extends Component {
         {this.props.error ? (
           <div>
             <h4>Error has occured fetching the data from the API</h4>
+            <h4>Check the Access Code </h4>
           </div>
         ) : null}
 

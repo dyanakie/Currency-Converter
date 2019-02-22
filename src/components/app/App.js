@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import logo from '../../logo.svg';
-import Converter from '../converter/index'
+import React, { Component } from "react";
+import logo from "../../logo.svg";
+import Converter from "../converter/index";
 import { Route, NavLink } from "react-router-dom";
-import Historic from '../historic-data/index'
-import HistoricAll from '../historic-data-all/index'
-import './App.css';
+import Historic from "../historic-data/index";
+import HistoricAll from "../historic-data-all/index";
+import "./App.css";
 
 class App extends Component {
   render() {
@@ -12,16 +12,25 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Currency Converter</h1>
-          <p style={{ fontSize: '15px' }}>made by dyanakiev</p>
-          <img src={logo} className="App-logo" alt="logo" height='220'/>
-          <p style={{fontSize: '15px'}}>The App connects to currencylayer.com to get current exchange rates.</p>
+          <p style={{ fontSize: "15px" }}>made by dyanakiev</p>
+          <img src={logo} className="App-logo" alt="logo" height="220" />
+          <p style={{ fontSize: "15px" }}>
+            The App connects to currencylayer.com to get current exchange rates.
+          </p>
 
-          <div style={{ display: 'inline'}}>
-            <NavLink to='/' style={{ marginRight: '50px', color: '#B22222'}}>Converter</NavLink>
-            <NavLink to='/historic' style={{ marginRight: '50px', color: '#B22222' }}>Historic</NavLink>
+          <div style={{ display: "inline" }}>
+            <NavLink to="/" style={{ marginRight: "50px", color: "#B22222" }}>
+              Converter
+            </NavLink>
+            <NavLink
+              to="/historic"
+              style={{ marginRight: "50px", color: "#B22222" }}
+            >
+              Historic
+            </NavLink>
           </div>
-       
-           <br />
+
+          <br />
           <Route exact path="/" component={Converter} />
           <Route exact path="/historic" component={Historic} />
           <Route exact path="/historic/all" component={HistoricAll} />

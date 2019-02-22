@@ -16,30 +16,34 @@ function* fetchCalculation(action) {
   const toCurrency = action.toCurrency;
   const amount = action.amount;
 
-  try{
-  const response = yield call(
-    fetch,
-    BASE_URL_LIVE +
-      "?access_key=" +
-      ACCESS_KEY +
-      "&currencies=" +
-      toCurrency +
-      "&source=USD&format=1"
-  );
-  const responseObj = yield response.json();
-  const currencies = Object.keys(responseObj.quotes)[0];
-  const toCurrencyFromResponse = currencies.substring(3);
-  const quote = responseObj.quotes[currencies];
-  yield put({
-    type: DO_CONVERT_ASYNC,
-    payload: { quote: quote * amount, toCurrency: toCurrencyFromResponse, amount }
-  });
-  }catch(error){
-      console.log(error);
-      yield put({
-          type: DO_CONVERT_ASYNC_ERROR,
-          payload: { error }
-      });
+  try {
+    const response = yield call(
+      fetch,
+      BASE_URL_LIVE +
+        "?access_key=" +
+        ACCESS_KEY +
+        "&currencies=" +
+        toCurrency +
+        "&source=USD&format=1"
+    );
+    const responseObj = yield response.json();
+    const currencies = Object.keys(responseObj.quotes)[0];
+    const toCurrencyFromResponse = currencies.substring(3);
+    const quote = responseObj.quotes[currencies];
+    yield put({
+      type: DO_CONVERT_ASYNC,
+      payload: {
+        quote: quote * amount,
+        toCurrency: toCurrencyFromResponse,
+        amount
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    yield put({
+      type: DO_CONVERT_ASYNC_ERROR,
+      payload: { error }
+    });
   }
 }
 
@@ -63,11 +67,11 @@ function* fetchHistoricData(action) {
       payload: { date: dateFromResponse, quotes, error: null }
     });
   } catch (error) {
-      console.log(error);
-      yield put({
-          type: DO_HISTORIC_ASYNC_ERROR,
-          payload: { error }
-      });
+    console.log(error);
+    yield put({
+      type: DO_HISTORIC_ASYNC_ERROR,
+      payload: { error }
+    });
   }
 }
 
