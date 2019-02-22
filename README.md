@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![alt text](https://github.com/dyanakie/Currency-Converter/public/sample.jpg)
+
 ## Installation
 
 1. Clone the repo.
