@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, NavLink, Switch } from "react-router-dom";
+import { DO_HISTORIC } from "../../constants/index";
+import { doHistoric } from '../../actions/historic'
 
 class Historic extends Component {
   constructor(props) {
@@ -35,6 +37,9 @@ class Historic extends Component {
 
         {this.props.responseDate ? (
           <div width="40%" style={{ textAlign: "center" }}>
+            <NavLink to="/historic/all">
+              <button>show all</button>
+            </NavLink>
             <p style={{ fontSize: "15px" }}>
               <i>exchange rate for US dollar on: {this.state.pickedDate} </i>
             </p>
@@ -57,9 +62,6 @@ class Historic extends Component {
                 })}
               </tbody>
             </table>
-            <NavLink to="/historic/all">
-              <button>show all</button>
-            </NavLink>
           </div>
         ) : null}
       </div>
@@ -77,10 +79,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   onSubmitClicked: date =>
-    dispatch({
-      type: "DO_FETCH_HISTORIC",
-      payload: date
-    })
+    dispatch(doHistoric(date))
 });
 
 export default connect(

@@ -1,5 +1,7 @@
 import { takeEvery, takeLatest, put, delay, call } from "redux-saga/effects";
 import { BASE_URL, ACCESS_KEY, BASE_URL_LIVE, BASE_URL_HISTORICAL} from '../constants/index'
+import { DO_HISTORIC_ASYNC, DO_HISTORIC } from '../constants/index'
+
 
 function* fetchCalculation(action) {
     console.log(action);
@@ -28,7 +30,7 @@ function* fetchHistoricData(action) {
     const quotes = json.quotes;
 
 
-    yield put({ type: "DO_HISTORIC", payload: {date: dateFromResponse, quotes} });
+    yield put({ type: DO_HISTORIC_ASYNC, payload: {date: dateFromResponse, quotes} });
 }
 
 export function* fetchResponseConvert() {
@@ -36,7 +38,7 @@ export function* fetchResponseConvert() {
 }
 
 export function* fetchResponseHistoricRequest() {
-    yield takeLatest("DO_FETCH_HISTORIC", fetchHistoricData)   
+    yield takeLatest(DO_HISTORIC, fetchHistoricData)   
 }
 
 

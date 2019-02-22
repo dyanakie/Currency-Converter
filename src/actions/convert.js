@@ -1,7 +1,9 @@
+import {DO_CONVERT} from '../constants/index'
 
-export const doConvert = (payload) => {
+export const doConvert = (toCurrency, amount) => {
     return {
-        type: 'DO_CONVERT',
-        payload
+        type: DO_CONVERT,
+        toCurrency: toCurrency,
+        amount: amount
     }
 }

@@ -1,3 +1,4 @@
+import { DO_HISTORIC_ASYNC} from '../constants/index'
 
 const tranformQuotesIntoArray = (quotes) => {
     let allRates = [];
@@ -11,8 +12,6 @@ const tranformQuotesIntoArray = (quotes) => {
      }  
     allRates.push({firstCurrency, secondCurrency, rate});
    })
-
-   console.log(allRates);
    return {allRates, mostImportantRates};
 }
 
@@ -20,7 +19,7 @@ export const historicReducer = (state = {quotes: {}}, action) => {
 
     switch(action.type){
 
-        case 'DO_HISTORIC':{
+        case DO_HISTORIC_ASYNC:{
          return {date: action.payload.date, quotes: tranformQuotesIntoArray(action.payload.quotes)}
         }
 

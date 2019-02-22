@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Dropdown } from "../dropdown/index";
+import { DO_CONVERT } from '../../constants/index'
+import { doConvert} from '../../actions/convert'
+
 import "./converter.css";
 
 class Converter extends Component {
@@ -113,11 +115,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   onConvertClicked: (toCurrency, amount) =>
-    dispatch({
-      type: "DO_CONVERT",
-      toCurrency: toCurrency,
-      amount: amount
-    })
+    dispatch(doConvert(toCurrency, amount))
 });
 
 export default connect(
