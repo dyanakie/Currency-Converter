@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, NavLink, Switch } from "react-router-dom";
 import { DO_HISTORIC } from "../../constants/index";
-import { doHistoric } from '../../actions/historic'
+import { doHistoric } from "../../actions/historic";
 
 class Historic extends Component {
   constructor(props) {
@@ -34,6 +34,12 @@ class Historic extends Component {
         >
           Submit
         </button>
+
+        {this.props.error ? (
+          <div>
+            <h4>Error has occured fetching the data from the API</h4>
+          </div>
+        ) : null}
 
         {this.props.responseDate ? (
           <div width="40%" style={{ textAlign: "center" }}>
@@ -73,13 +79,13 @@ const mapStateToProps = state => {
   return {
     responseDate: state.historic.date,
     allRates: state.historic.quotes.allRates,
-    mostImportantRates: state.historic.quotes.mostImportantRates
+    mostImportantRates: state.historic.quotes.mostImportantRates,
+    error: state.historic.error
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSubmitClicked: date =>
-    dispatch(doHistoric(date))
+  onSubmitClicked: date => dispatch(doHistoric(date))
 });
 
 export default connect(

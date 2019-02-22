@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { DO_CONVERT } from '../../constants/index'
-import { doConvert} from '../../actions/convert'
+import { DO_CONVERT } from "../../constants/index";
+import { doConvert } from "../../actions/convert";
 
 import "./converter.css";
 
@@ -88,6 +88,12 @@ class Converter extends Component {
           </button>
         </div>
 
+        {this.props.error ? (
+          <div>
+            <h4>Error has occured fetching the data from the API</h4>
+          </div>
+        ) : null}
+
         {this.props.result ? (
           <div>
             <p>
@@ -109,7 +115,8 @@ const getCurrentDate = () => new Date().toDateString();
 const mapStateToProps = state => {
   return {
     result: state.convertion.result,
-    toCurrencyConverted: state.convertion.toCurrencyConverted
+    toCurrencyConverted: state.convertion.toCurrencyConverted,
+    error: state.convertion.error
   };
 };
 
