@@ -42,7 +42,7 @@ class Historic extends Component {
         ) : null}
 
         {this.props.responseDate ? (
-          <div width="40%" style={{ textAlign: "center" }}>
+          <div width="40%" style={{ justifyContent: "center" }}>
             <NavLink to="/historic/all">
               <button>show all</button>
             </NavLink>
@@ -50,8 +50,8 @@ class Historic extends Component {
               <i>exchange rate for US dollar on: {this.state.pickedDate} </i>
             </p>
             <br />
-            <table border="5" style={{ textAlign: "center" }}>
-              <tbody style={{ textAlign: "center" }}>
+            <table border="5" style={{marginRight: 'auto', marginLeft: 'auto'}} >
+              <tbody >
                 <tr>
                   <th style={{ width: "150px" }}>From</th>
                   <th style={{ width: "150px" }}>To</th>

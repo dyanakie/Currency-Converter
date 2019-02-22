@@ -19,12 +19,12 @@ class App extends Component {
           </p>
 
           <div style={{ display: "inline" }}>
-            <NavLink to="/" style={{ marginRight: "50px", color: "#B22222" }}>
+            <NavLink to="/" style={{ marginRight: "80px", color: "#B22222" }}>
               Converter
             </NavLink>
             <NavLink
               to="/historic"
-              style={{ marginRight: "50px", color: "#B22222" }}
+              style={{ marginLeft: "15px", color: "#B22222" }}
             >
               Historic
             </NavLink>
