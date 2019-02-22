@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![alt text](https://github.com/dyanakie/Currency-Converter/blob/master/public/sample.jpg)
+![Screenshot](public/sample.jpg)
 
 ## About
 
