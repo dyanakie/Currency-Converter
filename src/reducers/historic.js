@@ -1,6 +1,6 @@
 import { DO_HISTORIC_ASYNC, DO_HISTORIC_ASYNC_ERROR} from '../constants/index'
 
-const tranformQuotesIntoArray = (quotes) => {
+const separateQuotes = (quotes) => {
     let allRates = [];
     let mostImportantRates = []
     let idAllRates = 0;
@@ -24,7 +24,7 @@ export const historicReducer = (state = {quotes: {}}, action) => {
     switch(action.type){
 
         case DO_HISTORIC_ASYNC:{
-         return {date: action.payload.date, quotes: tranformQuotesIntoArray(action.payload.quotes), error: null}
+         return {date: action.payload.date, quotes: separateQuotes(action.payload.quotes), error: null}
         }
 
         case DO_HISTORIC_ASYNC_ERROR: {
