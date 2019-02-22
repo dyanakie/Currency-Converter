@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { DO_CONVERT } from "../../constants/index";
 import { doConvert } from "../../actions/convert";
 
 import "./converter.css";

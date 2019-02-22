@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route, NavLink, Switch } from "react-router-dom";
-import { DO_HISTORIC } from "../../constants/index";
+import { NavLink } from "react-router-dom";
 import { doHistoric } from "../../actions/historic";
 
 class Historic extends Component {

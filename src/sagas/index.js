@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest, put, delay, call } from "redux-saga/effects";
+import { takeLatest, put, call } from "redux-saga/effects";
 import {
   ACCESS_KEY,
   BASE_URL_LIVE,
