@@ -18,7 +18,7 @@ export const HistoricAll = ({ allRates }) => (
           </tr>
           {(allRates || []).map(quote => {
             return (
-              <tr>
+                <tr key={quote.id}>
                 <td>{quote.firstCurrency}</td>
                 <td>{quote.secondCurrency}</td>
                 <td>{quote.rate}</td>

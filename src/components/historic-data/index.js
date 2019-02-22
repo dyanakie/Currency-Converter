@@ -59,7 +59,7 @@ class Historic extends Component {
                 </tr>
                 {this.props.mostImportantRates.map(quote => {
                   return (
-                    <tr>
+                    <tr key={quote.id}>
                       <td>{quote.firstCurrency}</td>
                       <td>{quote.secondCurrency}</td>
                       <td>{quote.rate}</td>
