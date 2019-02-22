@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![alt text](https://github.com/dyanakie/Currency-Converter/blob/master/public/sample.jpg)
+![alt text](https://stash.tick42.com/users/dyanakiev/repos/currency-converter-redux-saga/browse/public/sample.jpg)
 
 ## About
 
