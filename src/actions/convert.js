@@ -1,9 +1,11 @@
-import {DO_CONVERT} from '../constants/index'
+import { createActions } from './util'
 
-export const doConvert = (toCurrency, amount) => {
-    return {
-        type: DO_CONVERT,
-        toCurrency: toCurrency,
-        amount: amount
-    }
-}
+export const doConvert = 'DO_CONVERT';
+export const doConvertAsyncError ='DO_CONVERT_ASYNC_ERROR';
+export const doConvertAsync = 'DO_CONVERT_ASYNC'
+
+export default createActions({
+    doConvert,
+    doConvertAsync,
+    doConvertAsyncError
+})

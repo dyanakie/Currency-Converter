@@ -31,13 +31,7 @@ export const HistoricAll = ({ allRates }) => (
   </div>
 );
 
-const mapStateToProps = state => {
-  return {
-    allRates: state.historic.quotes.allRates
-  };
-};
-
 export default connect(
-  mapStateToProps,
+  state => ({ allRates: state.historic.quotes.allRates }),
   null
 )(HistoricAll);

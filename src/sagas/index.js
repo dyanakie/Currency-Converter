@@ -4,74 +4,58 @@ import {
   BASE_URL_LIVE,
   BASE_URL_HISTORICAL,
   DO_CONVERT,
-  DO_CONVERT_ASYNC,
-  DO_HISTORIC_ASYNC_ERROR,
-  DO_HISTORIC,
-  DO_HISTORIC_ASYNC,
-  DO_CONVERT_ASYNC_ERROR
+  DO_HISTORIC
 } from "../constants/index";
+import actionsConvertLoaders from "../actions/convert";
+import actionsHistoricLoaders from "../actions/historic";
 
 function* fetchCalculation(action) {
-  console.log(action);
-  const toCurrency = action.toCurrency;
-  const amount = action.amount;
+  const toCurrency = action.payload.props.toCurrency;
+  const amount = action.payload.props.inputAmount;
 
   try {
     const response = yield call(
       fetch,
-      BASE_URL_LIVE +
-        "?access_key=" +
-        ACCESS_KEY +
-        "&currencies=" +
-        toCurrency +
-        "&source=USD&format=1"
+      `${BASE_URL_LIVE}?access_key=${ACCESS_KEY}&currencies=${toCurrency}&source=USD&format=1`
     );
     const responseObj = yield response.json();
     const currencies = Object.keys(responseObj.quotes)[0];
     const toCurrencyFromResponse = currencies.substring(3);
     const quote = responseObj.quotes[currencies];
-    yield put({
-      type: DO_CONVERT_ASYNC,
-      payload: {
+    yield put(
+      actionsConvertLoaders.doConvertAsync({
         quote: quote * amount,
         toCurrency: toCurrencyFromResponse,
         amount
-      }
-    });
+      })
+    );
   } catch (error) {
     console.log(error);
-    yield put({
-      type: DO_CONVERT_ASYNC_ERROR,
-      payload: { error }
-    });
+    yield put(actionsConvertLoaders.doConvertAsyncError({ error }));
   }
 }
 
 function* fetchHistoricData(action) {
-  console.log(action);
-  console.log("sending request");
-
   const date = action.payload;
 
   try {
     const response = yield call(
       fetch,
-      BASE_URL_HISTORICAL + "?access_key=" + ACCESS_KEY + "&date=" + date
+      `${BASE_URL_HISTORICAL}?access_key=${ACCESS_KEY}&date=${date}`
     );
-    const json = yield response.json();
-    const dateFromResponse = json.date;
-    const quotes = json.quotes;
-
-    yield put({
-      type: DO_HISTORIC_ASYNC,
-      payload: { date: dateFromResponse, quotes, error: null }
-    });
+    const responseObj = yield response.json();
+    const dateFromResponse = responseObj.date;
+    const quotes = responseObj.quotes;
+    yield put(
+      actionsHistoricLoaders.doHistoricAsync({
+        date: dateFromResponse,
+        quotes,
+        error: null
+      })
+    );
   } catch (error) {
     console.log(error);
-    yield put({
-      type: DO_HISTORIC_ASYNC_ERROR,
-      payload: { error }
-    });
+    yield put(actionsHistoricLoaders.doHistoricAsyncError({ error }));
   }
 }
 

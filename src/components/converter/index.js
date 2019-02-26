@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { doConvert } from "../../actions/convert";
-
+import doConvert from "../../actions/convert";
 import "./converter.css";
+import { bindActionCreators } from "../../../../../../AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux";
+import {
+  convertionAmountSelector,
+  convertionErrorSelector,
+  convertionResultSelector,
+  convertionToCurrencyConvertedSelector
+} from "../../reducers/convert";
 
 class Converter extends Component {
   constructor(props) {
@@ -16,6 +22,14 @@ class Converter extends Component {
   }
 
   render() {
+    const {
+      result,
+      amount: responseAmount,
+      error,
+      toCurrencyConverted,
+      doConvert
+    } = this.props;
+    const { fromCurrency, toCurrency, amount: inputAmount } = this.state;
     return (
       <div>
         <div width="40%">
@@ -29,7 +43,7 @@ class Converter extends Component {
                 <td>
                   <div className="custom-select" style={{ width: "200px" }}>
                     <select
-                      value={this.state.fromCurrency}
+                      value={fromCurrency}
                       onChange={e =>
                         this.setState({ fromCurrency: e.target.value })
                       }
@@ -46,7 +60,7 @@ class Converter extends Component {
                   <div className="custom-select" style={{ width: "200px" }}>
                     <select
                       style={{ display: "inline-block" }}
-                      value={this.state.toCurrency}
+                      value={toCurrency}
                       onChange={e =>
                         this.setState({ toCurrency: e.target.value })
                       }
@@ -70,35 +84,30 @@ class Converter extends Component {
           <p>Amount</p>
           <input
             type="text"
-            value={this.state.amount}
+            value={inputAmount}
             onChange={e => this.setState({ amount: e.target.value })}
           />
           <hr />
 
           <button
-            onClick={() =>
-              this.props.onConvertClicked(
-                this.state.toCurrency,
-                this.state.amount
-              )
-            }
+            onClick={() => doConvert({ props: { toCurrency, inputAmount } })}
           >
             Convert
           </button>
         </div>
 
-        {this.props.error ? (
+        {error ? (
           <div>
             <h4>Error has occured fetching the data from the API</h4>
             <h4>Check the Access Code </h4>
           </div>
         ) : null}
 
-        {this.props.result ? (
+        {result ? (
           <div>
             <p>
-              {this.props.amount}$ to {this.props.toCurrencyConverted}:{" "}
-              <b>{this.props.result.toFixed(2)}</b>
+              {responseAmount}$ to {toCurrencyConverted}:{" "}
+              <b>{result.toFixed(2)}</b>
             </p>
             <p style={{ fontSize: "15px" }}>
               <i>exchange rate date: {getCurrentDate()} </i>
@@ -112,21 +121,12 @@ class Converter extends Component {
 
 const getCurrentDate = () => new Date().toDateString();
 
-const mapStateToProps = state => {
-  return {
-    result: state.convertion.result,
-    toCurrencyConverted: state.convertion.toCurrencyConverted,
-    error: state.convertion.error,
-    amount: state.convertion.amount
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  onConvertClicked: (toCurrency, amount) =>
-    dispatch(doConvert(toCurrency, amount))
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  state => ({
+    result: convertionResultSelector(state),
+    toCurrencyConverted: convertionToCurrencyConvertedSelector(state),
+    error: convertionErrorSelector(state),
+    amount: convertionAmountSelector(state)
+  }),
+  dispatch => bindActionCreators({ ...doConvert }, dispatch)
 )(Converter);
